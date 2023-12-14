@@ -8,6 +8,7 @@ import 'package:user_frontend/custom/custom_profilesetting.dart';
 import 'package:user_frontend/pages/changepassword.dart';
 import 'package:user_frontend/pages/editprofile.dart';
 import 'package:user_frontend/pages/login.dart';
+import 'package:user_frontend/pages/sub2.dart';
 import 'package:user_frontend/pages/subscriptions.dart';
 import 'package:user_frontend/pages/terms_conditions.dart';
 
@@ -153,7 +154,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const Subscriptions(),
+                        builder: (context) => const Sub(),
                       ),
                     );
                   },

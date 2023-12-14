@@ -164,9 +164,10 @@ class _SignInState extends State<SignIn> {
                         minimumSize: const Size(140, 40),
                       ),
                       onPressed: () {
-                        if (_formKey.currentState?.validate() ?? false) {
+
+                        // if (_formKey.currentState?.validate() ?? false) {
                           GoRouter.of(context).goNamed(RoutePaths.home);
-                        }
+                        // }
                       },
                       child: Text(
                         'Login',

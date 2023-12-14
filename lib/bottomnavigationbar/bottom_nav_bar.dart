@@ -11,6 +11,8 @@ import 'package:user_frontend/pages/profilesetting.dart';
 import 'package:user_frontend/pages/subscriptions.dart';
 import 'package:user_frontend/pages/terms_conditions.dart';
 
+import '../pages/sub2.dart';
+
 
 // // private navigators
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -26,6 +28,8 @@ class RoutePaths {
   static const String usedCoupon = 'usedCoupon';
 
   static const String subscription = 'subscription';
+  static const String subscriptions = 'subscriptions';
+
   static const String profileSetting = 'profileSetting';
   static const String editProfile = 'editProfile';
   static const String termsConditions = 'termsConditions';
@@ -100,6 +104,10 @@ final goRouter = GoRouter(
                       name: RoutePaths.changePassword,
                       path: 'changePassword',
                       builder: (context, state) => const ChangePWD()),
+                  GoRoute(
+                      name: RoutePaths.subscriptions,
+                      path: 'subscriptions',
+                      builder: (context, state) => const Sub()),
                 ],
               )
             ])
