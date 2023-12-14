@@ -165,9 +165,9 @@ class _SignInState extends State<SignIn> {
                       ),
                       onPressed: () {
 
-                        // if (_formKey.currentState?.validate() ?? false) {
+                        if (_formKey.currentState?.validate() ?? false) {
                           GoRouter.of(context).goNamed(RoutePaths.home);
-                        // }
+                        }
                       },
                       child: Text(
                         'Login',
