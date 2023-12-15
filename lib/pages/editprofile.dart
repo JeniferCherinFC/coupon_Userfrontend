@@ -48,28 +48,19 @@ class _EditprofileState extends State<Editprofile> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: greens,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.west_outlined),
-                      color: Colors.black87,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ProfileSetting()),
-                        );
-                      },
-                    ),
+                child:
+
                     RichText(
                       text: TextSpan(
                         children: <TextSpan>[
@@ -92,9 +83,6 @@ class _EditprofileState extends State<Editprofile> {
                         ],
                       ),
                     ),
-                    const SizedBox(width: 56),
-                  ],
-                ),
               ),
               const SizedBox(height: 5),
               Padding(

@@ -12,6 +12,7 @@ import 'package:user_frontend/pages/subscriptions.dart';
 import 'package:user_frontend/pages/terms_conditions.dart';
 
 import '../pages/sub2.dart';
+import '../pages/totalcoupons.dart';
 
 
 // // private navigators
@@ -24,7 +25,9 @@ class RoutePaths {
 
   static const String home = 'Home';
 
-  static const String availableCoupon = 'availableCoupon';
+  static const String totalCoupon = 'totalCoupon';
+  static const String availCoupon = 'availCoupon';
+
   static const String usedCoupon = 'usedCoupon';
 
   static const String subscription = 'subscription';
@@ -64,10 +67,10 @@ final goRouter = GoRouter(
             ]),
             StatefulShellBranch(routes: [
               GoRoute(
-                name: RoutePaths.availableCoupon,
+                name: RoutePaths.totalCoupon,
                 path: '/availableCoupon',
                 pageBuilder: (context, state) =>
-                    const NoTransitionPage(child: CouponsAvailable()),
+                    const NoTransitionPage(child: CouponsTotal()),
                 routes: [
                   GoRoute(
                       name: RoutePaths.usedCoupon,

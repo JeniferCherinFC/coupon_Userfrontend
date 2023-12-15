@@ -12,6 +12,9 @@ import 'package:user_frontend/pages/sub2.dart';
 import 'package:user_frontend/pages/subscriptions.dart';
 import 'package:user_frontend/pages/terms_conditions.dart';
 
+import '../model/signin.dart';
+import '../service/login.dart';
+
 class ProfileSetting extends StatefulWidget {
   const ProfileSetting({Key? key}) : super(key: key);
 
@@ -53,7 +56,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 Navigator.of(context).pop(true); // OK
               },
               child: Text(
-                'ok',
+                'Yes',
                 style: GoogleFonts.montserrat(
                   fontWeight: FontWeight.w600,
                   fontSize: 14,
@@ -67,6 +70,21 @@ class _ProfileSettingState extends State<ProfileSetting> {
     );
   }
 
+
+
+  Userlogout logout = Userlogout();
+  String? userId;
+
+  userlogout() async {
+    logout.userlogout(
+      userId: userId,
+      context: context,
+    );
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -75,12 +93,15 @@ class _ProfileSettingState extends State<ProfileSetting> {
         return false;
       },
       child: Scaffold(
+        appBar: AppBar(
+        backgroundColor: greens,
+      ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 Container(
-                  height: 193,
+                  height: 120,
                   width: 900,
                   color: greens,
                   child: Stack(
@@ -88,7 +109,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                     alignment: Alignment.center,
                     children: [
                       Positioned(
-                        top: 100, // Adjust the top position to your liking
+                        top: 50, // Adjust the top position to your liking
                         child: Text(
                           'Profile',
                           style: GoogleFonts.commissioner(
@@ -99,7 +120,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                         ),
                       ),
                       const Positioned(
-                        top: 140,
+                        top: 80,
                         child: CircleAvatar(
                           radius: 50,
                           backgroundColor: Color.fromARGB(255, 163, 223, 171),
@@ -169,13 +190,10 @@ class _ProfileSettingState extends State<ProfileSetting> {
       
                     // If the user confirms logout, navigate to the sign-in page
                     if (logoutConfirmed == true) {
-                      // ignore: use_build_context_synchronously
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SignIn(),
-                        ),
-                      );
+
+                      userlogout();
+
+
                     }
                   },
                 ),

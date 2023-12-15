@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user_frontend/constants/colors.dart';
 import 'package:user_frontend/pages/profilesetting.dart';
+
+import '../constants/utilities.dart';
+import '../service/commonservice.dart';
 
 
 class ChangePWD extends StatefulWidget {
@@ -13,46 +17,55 @@ class ChangePWD extends StatefulWidget {
 }
 
 class _ChangePWDState extends State<ChangePWD> {
-  final TextEditingController _newPasswordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
+   TextEditingController newPasswordController = TextEditingController();
+   TextEditingController confirmPasswordController =
       TextEditingController();
   final _formKey = GlobalKey<FormState>(); // Form key to validate the form
   bool _isPasswordHidden = true; // Track the visibility state for new password
   bool _confirmPasswordEnabled =
       false; // Track the enable state for confirm password
 
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: const Duration(seconds: 2),
-      ),
-    );
-  }
+
 
   void _onOkPressed() {
     if (_formKey.currentState?.validate() ?? false) {
-      String newPassword = _newPasswordController.text;
-      String confirmPassword = _confirmPasswordController.text;
+
+      String newPassword = newPasswordController.text;
+      String confirmPassword = confirmPasswordController.text;
 
       if (newPassword == confirmPassword) {
-        // Perform password change logic here
-
-        // Show snackbar
-        _showSnackBar("Password changed successfully");
-
-        // Navigate to the profile page
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) =>
-                const ProfileSetting(), // Replace with your actual profile page
-          ),
-        );
+        userchpass();
       } else {
-        _showSnackBar("Passwords do not match");
+        showCustomSnackBar(
+          context: context,
+          text:"Passwords do not match",
+        );
       }
     }
   }
+
+     String ? mobileNumber;
+
+  Changepass chpassword= Changepass();
+  String? userId;
+
+  userchpass() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    mobileNumber = prefs.getString("mobileNumber");
+
+    chpassword.changepassword(
+
+      mobileNumber: mobileNumber,
+      password:confirmPasswordController.text,
+      context: context,
+    );
+  }
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +97,7 @@ class _ChangePWDState extends State<ChangePWD> {
                 children: [
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: _newPasswordController,
+                    controller: newPasswordController,
                     obscureText: _isPasswordHidden,
                     onChanged: (value) {
                       setState(() {
@@ -138,7 +151,7 @@ class _ChangePWDState extends State<ChangePWD> {
                   const SizedBox(height: 16),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: _confirmPasswordController,
+                    controller: confirmPasswordController,
                     obscureText: true,
                     enabled: _confirmPasswordEnabled,
                     decoration: InputDecoration(
@@ -160,7 +173,7 @@ class _ChangePWDState extends State<ChangePWD> {
                       if (_confirmPasswordEnabled) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter confirm password';
-                        } else if (_newPasswordController.text != value) {
+                        } else if (newPasswordController.text != value) {
                           return 'Passwords do not match';
                         }
                       }

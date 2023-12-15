@@ -12,6 +12,7 @@ import '../constants/colors.dart';
 import '../custom/custom_home.dart';
 import '../model/home.dart';
 import '../service/homeservice.dart';
+import 'couponsavail.dart';
 
 
 class Home extends StatefulWidget {
@@ -23,7 +24,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  String? mobileNumber;
+  String ? mobileNumber;
   Coupon? totalAvailable ;
 
 
@@ -57,6 +58,9 @@ class _HomeState extends State<Home> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: greens,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
@@ -263,43 +267,63 @@ class _HomeState extends State<Home> {
                 height: 30,
               ),
               ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) =>  CouponsAvailable(phone:mobileNumber,type:"Breakfast")));
 
-              CustomCard(
-                imagePath: 'lib/images/breakfast.png',
-                title: 'Breakfast',
-                statusText1: 'Available',
-                statusValue1: "${totalAvailable?.bAvail ?? "0"}",
-                statusColor1: greens,
-                statusText2: 'Used',
-                statusValue2:  "${totalAvailable?.bUsed ?? "0"}",
-                statusColor2: redish,
-                labelText: 'Breakfast',
+                },
+                child: CustomCard(
+                  imagePath: 'lib/images/breakfast.png',
+                  title: 'Breakfast',
+                  statusText1: 'Available',
+                  statusValue1: "${totalAvailable?.bAvail ?? "0"}",
+                  statusColor1: greens,
+                  statusText2: 'Used',
+                  statusValue2:  "${totalAvailable?.bUsed ?? "0"}",
+                  statusColor2: redish,
+                  labelText: 'Breakfast',
+                ),
               ),
 
               const SizedBox(height: 25),
-              CustomCard(
-                imagePath: 'lib/images/lunch.png',
-                title: 'Lunch',
-                statusText1: 'Available',
-                statusValue1: "${totalAvailable?.lAvail ?? "0"}",
-                statusColor1: greens,
-                statusText2: 'Used',
-                statusValue2:  "${totalAvailable?.lUsed?? "0"}",
-                statusColor2: redish,
-                labelText: 'Lunch',
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) =>  CouponsAvailable(phone:mobileNumber,type:"Lunch")));
+
+                },
+                child: CustomCard(
+                  imagePath: 'lib/images/lunch.png',
+                  title: 'Lunch',
+                  statusText1: 'Available',
+                  statusValue1: "${totalAvailable?.lAvail ?? "0"}",
+                  statusColor1: greens,
+                  statusText2: 'Used',
+                  statusValue2:  "${totalAvailable?.lUsed?? "0"}",
+                  statusColor2: redish,
+                  labelText: 'Lunch',
+                ),
               ),
 
               const SizedBox(height: 25),
-              CustomCard(
-                imagePath: 'lib/images/dinner.png',
-                title: 'Dinner',
-                statusText1: 'Available',
-                statusValue1: "${totalAvailable?.dAvail ?? "0"}",
-                statusColor1: greens,
-                statusText2: 'Used',
-                statusValue2: "${totalAvailable?.dUsed ?? "0"}",
-                statusColor2: redish,
-                labelText: 'Dinner',
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => CouponsAvailable(phone:mobileNumber,type:"Dinner")));
+
+                },
+                child: CustomCard(
+                  imagePath: 'lib/images/dinner.png',
+                  title: 'Dinner',
+                  statusText1: 'Available',
+                  statusValue1: "${totalAvailable?.dAvail ?? "0"}",
+                  statusColor1: greens,
+                  statusText2: 'Used',
+                  statusValue2: "${totalAvailable?.dUsed ?? "0"}",
+                  statusColor2: redish,
+                  labelText: 'Dinner',
+                ),
               ),
               const SizedBox(height: 25),
 

@@ -16,3 +16,18 @@ class Signin{
   }
 
 }
+
+class Logout {
+  String? userId;
+
+  Logout({
+    required this.userId,
+    required context,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'userId': userId,
+    };
+  }
+}
