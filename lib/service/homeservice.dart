@@ -1,31 +1,28 @@
+
 import 'package:dio/dio.dart';
-import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../bottomnavigationbar/bottom_nav_bar.dart';
 import '../constants/global_variables.dart';
 import '../constants/headers.dart';
 import '../constants/utilities.dart';
+import '../model/home.dart';
 
-class Login{
+class Dashboard{
 
 
-  Future<void> login({
-
+  Future<Coupon?> getDashboard({
     required String ? mobileNumber,
-    required String ? password,
-
     required context,
   }) async {
+
     // Define the URL of your API endpoint
-    final String apiUrl = '$baseUrl/login';
+    final String apiUrl = '$baseUrl/getcoupondetails';
+
+    Coupon? dataList;
 
 
     // Create a FormData object
-
     FormData formData = FormData.fromMap({
       'phone_number':mobileNumber,
-      'password':password,
-
     });
 
     print(apiUrl);
@@ -42,24 +39,23 @@ class Login{
 
     if (response.statusCode == 200  ) {
       // Handle a successful response
-
       if(response.data['status']== "1") {
-
         print('API response: ${response.data}');
         var message=response.data['response'];
         var message_two=message['data'];
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        var userId= message_two['userid'];
-        var phoneNumber= message_two['phone'];
-        var branch =message_two['customerbranch'];
-
-        await prefs.setString("jsId", "$userId");
-        await prefs.setString("mobileNumber", "$phoneNumber");
-        await prefs.setString("branchCode", "$branch");
 
 
-        GoRouter.of(context).goNamed(RoutePaths.home);
+            dataList =  Coupon(
+            totalAvail: message_two['totalAvailable'],
+        totalUsed: message_two['totalUsed'],
+        bAvail: message_two['bAvailable'],
+        bUsed: message_two['bUsed'],
+        lAvail: message_two['lAvailable'],
+        lUsed: message_two['lUsed'],
+        dAvail: message_two['dAvailable'],
+        dUsed: message_two['dUsed']
 
+        );
 
       }else{
         showCustomSnackBar(
@@ -72,6 +68,7 @@ class Login{
       // Handle errors here
       print('API request failed with status code ${response.statusCode}');
     }
+    return dataList;
   }
 
 }

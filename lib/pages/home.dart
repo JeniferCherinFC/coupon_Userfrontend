@@ -5,10 +5,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user_frontend/bottomnavigationbar/bottom_nav_bar.dart';
 
 import '../constants/colors.dart';
 import '../custom/custom_home.dart';
+import '../model/home.dart';
+import '../service/homeservice.dart';
 
 
 class Home extends StatefulWidget {
@@ -19,6 +22,36 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  String? mobileNumber;
+  Coupon? totalAvailable ;
+
+
+
+  Future<void> fetchPostData() async {
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    mobileNumber = prefs.getString("mobileNumber");
+
+    final apiCall = Dashboard();
+    final  alldashboardData = await  apiCall.getDashboard(
+      mobileNumber:mobileNumber,
+      context: context,
+    );
+    setState(() {
+      totalAvailable = alldashboardData  ;
+    });
+  }
+
+
+  @override
+  void initState() {
+    fetchPostData();
+    super.initState();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -151,7 +184,7 @@ class _HomeState extends State<Home> {
                             ),
                             child: Center(
                               child: Text(
-                                '84',
+                                "${totalAvailable?.totalAvail ?? "0"}",
                                 style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                     fontSize: 13,
@@ -212,7 +245,7 @@ class _HomeState extends State<Home> {
                             ),
                             child: Center(
                               child: Text(
-                                '06',
+                                  "${totalAvailable?.totalUsed ?? "0"}",
                                 style: GoogleFonts.montserrat(
                                     color: Colors.white,
                                     fontSize: 13,
@@ -235,10 +268,10 @@ class _HomeState extends State<Home> {
                 imagePath: 'lib/images/breakfast.png',
                 title: 'Breakfast',
                 statusText1: 'Available',
-                statusValue1: '28',
+                statusValue1: "${totalAvailable?.bAvail ?? "0"}",
                 statusColor1: greens,
                 statusText2: 'Used',
-                statusValue2: '02',
+                statusValue2:  "${totalAvailable?.bUsed ?? "0"}",
                 statusColor2: redish,
                 labelText: 'Breakfast',
               ),
@@ -248,10 +281,10 @@ class _HomeState extends State<Home> {
                 imagePath: 'lib/images/lunch.png',
                 title: 'Lunch',
                 statusText1: 'Available',
-                statusValue1: '28',
+                statusValue1: "${totalAvailable?.lAvail ?? "0"}",
                 statusColor1: greens,
                 statusText2: 'Used',
-                statusValue2: '02',
+                statusValue2:  "${totalAvailable?.lUsed?? "0"}",
                 statusColor2: redish,
                 labelText: 'Lunch',
               ),
@@ -261,10 +294,10 @@ class _HomeState extends State<Home> {
                 imagePath: 'lib/images/dinner.png',
                 title: 'Dinner',
                 statusText1: 'Available',
-                statusValue1: '28',
+                statusValue1: "${totalAvailable?.dAvail ?? "0"}",
                 statusColor1: greens,
                 statusText2: 'Used',
-                statusValue2: '02',
+                statusValue2: "${totalAvailable?.dUsed ?? "0"}",
                 statusColor2: redish,
                 labelText: 'Dinner',
               ),
