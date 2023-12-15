@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 import 'package:user_frontend/bottomnavigationbar/bottom_nav_bar.dart';
 import 'package:user_frontend/constants/colors.dart';
+import 'package:user_frontend/service/login.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -17,16 +18,31 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+
   final _formKey = GlobalKey<FormState>();
-  late TextEditingController _mobileController;
-  late TextEditingController _passwordController;
+  // late TextEditingController _passwordController;
+  TextEditingController mobileController =TextEditingController();
+  TextEditingController passwordController =TextEditingController();
+
   bool _isPasswordHidden = true;
+
+
+  Login  signin =Login();
+
+  login() async {
+    signin.login(
+      mobileNumber:mobileController.text,
+      password: passwordController.text,
+      context: context,
+    );
+
+  }
 
   @override
   void initState() {
     super.initState();
-    _mobileController = TextEditingController();
-    _passwordController = TextEditingController();
+    // _mobileController = TextEditingController();
+    // _passwordController = TextEditingController();
   }
 
   @override
@@ -68,7 +84,7 @@ class _SignInState extends State<SignIn> {
                       padding: const EdgeInsets.all(10.0),
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
-                        controller: _mobileController,
+                        controller: mobileController,
                         keyboardType: TextInputType.number,
                         inputFormatters: [
                           FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -106,7 +122,7 @@ class _SignInState extends State<SignIn> {
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
-                        controller: _passwordController,
+                        controller: passwordController,
                         obscureText: _isPasswordHidden,
                         decoration: InputDecoration(
                           border: const OutlineInputBorder(),
@@ -164,9 +180,10 @@ class _SignInState extends State<SignIn> {
                         minimumSize: const Size(140, 40),
                       ),
                       onPressed: () {
-
                         if (_formKey.currentState?.validate() ?? false) {
-                          GoRouter.of(context).goNamed(RoutePaths.home);
+                          login();
+
+                        //   GoRouter.of(context).goNamed(RoutePaths.home);
                         }
                       },
                       child: Text(
@@ -190,8 +207,8 @@ class _SignInState extends State<SignIn> {
 
   @override
   void dispose() {
-    _mobileController.dispose();
-    _passwordController.dispose();
+    mobileController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 }

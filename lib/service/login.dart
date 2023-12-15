@@ -1,10 +1,12 @@
-import 'dart:html';
+// import 'dart:html';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user_frontend/pages/home.dart';
 
+import '../bottomnavigationbar/bottom_nav_bar.dart';
 import '../constants/global_variables.dart';
 import '../constants/headers.dart';
 import '../constants/utilities.dart';
@@ -20,13 +22,15 @@ class Login{
     required context,
   }) async {
     // Define the URL of your API endpoint
-    final String apiUrl = '$baseUrl/api/login';
+    final String apiUrl = '$baseUrl/login';
 
 
     // Create a FormData object
 
     FormData formData = FormData.fromMap({
-      'mobileNumber':mobileNumber,
+      'phone_number':mobileNumber,
+      'password':password,
+
     });
 
     print(apiUrl);
@@ -44,25 +48,24 @@ class Login{
     if (response.statusCode == 200  ) {
       // Handle a successful response
 
-
       if(response.data['status']== "1") {
-
-
 
         print('API response: ${response.data}');
         var message=response.data['response'];
-        var message_two=message['user'];
+        var message_two=message['data'];
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        var user= message_two['jsId'];
-        var mobileNumber= message_two['mobileNumber'];
-        await prefs.setString("jsId", "$user");
-        await prefs.setString("mobileNumber", "$mobileNumber");
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Home(),
-          ),
-        );
+        var userId= message_two['userid'];
+        var phoneNumber= message_two['phone'];
+        var branch =message_two['customerbranch'];
+
+        await prefs.setString("jsId", "$userId");
+        await prefs.setString("mobileNumber", "$phoneNumber");
+        await prefs.setString("branchCode", "$branch");
+
+
+        GoRouter.of(context).goNamed(RoutePaths.home);
+
+
       }else{
         showCustomSnackBar(
           context: context,

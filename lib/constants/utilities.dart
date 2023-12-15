@@ -51,7 +51,7 @@ void showCustomSnackBar({
 
   final snackBar = SnackBar(
     content: Text(text),
-    backgroundColor: Color.fromRGBO(157, 118, 193, 1),
+    backgroundColor: Color.fromRGBO(43, 135, 97, 1),
     behavior: SnackBarBehavior.floating,
     duration: Duration(seconds: 1),
     // elevation: 30,
