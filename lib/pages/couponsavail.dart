@@ -1,5 +1,8 @@
 // ignore_for_file: unused_local_variable
 
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,7 +29,7 @@ class CouponsAvailable extends StatefulWidget {
 
 class _CouponsAvailableState extends State<CouponsAvailable> {
   bool isAvailable = true;
-
+String ? imageBytes ;
 
   List<Availablecoupons> subList = [];
   Future<void> fetchPostData() async {
@@ -39,9 +42,59 @@ class _CouponsAvailableState extends State<CouponsAvailable> {
     );
     setState(() {
       subList = allavailData  ;
-
     });
   }
+
+
+
+  Future<void> _dialogBuilder(BuildContext context, {required String qR}) {
+    return showDialog<void>(
+
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+
+          title: Center(child: const Text('Scan to Claim coupon')),
+          content:  QrImageView(
+          data: qR,
+          version: QrVersions.auto,
+          // size: double.infinity,
+        ),
+          actions: <Widget>[
+            // TextButton(
+            //   style: TextButton.styleFrom(
+            //     textStyle: Theme.of(context).textTheme.labelLarge,
+            //   ),
+            //   child: const Text('Disable'),
+            //   onPressed: () {
+            //     Navigator.of(context).pop();
+            //   },
+            // ),
+            // TextButton(
+            //   style: TextButton.styleFrom(
+            //     textStyle: Theme.of(context).textTheme.labelLarge,
+            //   ),
+            //   child: const Text('Enable'),
+            //   onPressed: () {
+            //     Navigator.of(context).pop();
+            //   },
+            // ),
+          ],
+        );
+      },
+    );
+  }
+
+
+
+
+
+
+
+
+
+
+
 
   @override
   void initState() {
@@ -52,6 +105,16 @@ class _CouponsAvailableState extends State<CouponsAvailable> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+
+    List<Availablecoupons> listData = [];
+    if (subList.length >= 2){
+
+      listData = subList.sublist(0,2);
+
+    }else{
+      listData = subList;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -77,7 +140,7 @@ class _CouponsAvailableState extends State<CouponsAvailable> {
               children: [
                 const SizedBox(height: 20),
                 Text(
-                  'Coupons',
+                 '${widget.type} Coupons',
                   style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
@@ -121,7 +184,6 @@ class _CouponsAvailableState extends State<CouponsAvailable> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-
                           builder: (context) =>  CouponsUsed(phone:widget.phone,type: widget.type),
                         ),
                       );
@@ -129,73 +191,68 @@ class _CouponsAvailableState extends State<CouponsAvailable> {
                   ),
                 ),
                 const SizedBox(height: 30),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (var items in listData)
 
-                  children: [
+                      GestureDetector(
+
+                        onTap :()=>_dialogBuilder(context,qR:items.qrId),
+
+                        child: Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Container(
+                            padding: const EdgeInsets.all(
+                                4.0), // Adjust padding as needed
+                            height: 170.0,
+                            width: 180.0,
 
 
-                    Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(
-                              8.0), // Adjust padding as needed
-                          height: 145.0,
-                          width: 150.0,
-                          child: QrImageView(
-                            data: '1234567890',
-                            version: QrVersions.auto,
-                            size: double.infinity,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 8, // Adjust the height as needed
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Text(
-                            'Coupon 1',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 14, // Adjust the font size as needed
-                              fontWeight: FontWeight.w600,
+                            child: QrImageView(
+                              data: items.qrId,
+                              version: QrVersions.auto,
+                              size: double.infinity,
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(
-                              8.0), // Adjust padding as needed
-                          height: 145.0,
-                          width: 150.0,
-                          child: QrImageView(
-                            data: '0987654321',
-                            version: QrVersions.auto,
-                            size: double.infinity,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 8, // Adjust the height as needed
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Text(
-                            'Coupon 2',
-                            style: GoogleFonts.montserrat(
-                              fontSize: 14, // Adjust the font size as needed
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      // const SizedBox(
+                      //   width: 30,
+                      // ),
+                      // Column(
+                      //   children: [
+                      //     Container(
+                      //       padding: const EdgeInsets.all(
+                      //           8.0), // Adjust padding as needed
+                      //       height: 145.0,
+                      //       width: 150.0,
+                      //       child: QrImageView(
+                      //         data: '0987654321',
+                      //         version: QrVersions.auto,
+                      //         size: double.infinity,
+                      //       ),
+                      //     ),
+                      //     const SizedBox(
+                      //       height: 8, // Adjust the height as needed
+                      //     ),
+                      //     Align(
+                      //       alignment: Alignment.bottomCenter,
+                      //       child: Text(
+                      //         'Coupon 2',
+                      //         style: GoogleFonts.montserrat(
+                      //           fontSize: 14, // Adjust the font size as needed
+                      //           fontWeight: FontWeight.w600,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                    ],
+                  ),
                 ),
 
                 // const SizedBox(

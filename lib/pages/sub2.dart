@@ -106,6 +106,9 @@ class _SubState extends State<Sub> {
                       dateOfPurchase: items.dop,
                       subscriptionType: items.couponType,
                       branch: items.branch,
+                      sDate: items.sDate,
+                      eDate: items.eDate,
+
                     ),
                   ],
               ),

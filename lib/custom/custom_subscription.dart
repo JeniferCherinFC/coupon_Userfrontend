@@ -9,6 +9,9 @@ class SubscriptionDetailsContainer extends StatelessWidget {
   final String dateOfPurchase;
   final String subscriptionType;
   final String branch;
+  final String sDate;
+  final String eDate;
+
 
    SubscriptionDetailsContainer({
     Key? key,
@@ -16,6 +19,9 @@ class SubscriptionDetailsContainer extends StatelessWidget {
     required this.dateOfPurchase,
     required this.subscriptionType,
     required this.branch,
+     required this.sDate,
+     required this.eDate,
+
   }) : super(key: key);
 
   @override
@@ -26,7 +32,7 @@ class SubscriptionDetailsContainer extends StatelessWidget {
       margin:  EdgeInsets.only(right: 10,left: 10,top: 5 ,bottom: 10),
         child: Container(
 
-          height: 68,
+          height: 100,
           width: 350,
           child: Padding(
             padding:  EdgeInsets.all(10),
@@ -115,14 +121,55 @@ class SubscriptionDetailsContainer extends StatelessWidget {
 
                       ],
                     ),
+                    Row(
+                      children: [
+
+                        Text(
+                          'Start date',
+                          style: GoogleFonts.commissioner(
+                            color: Colors.black,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          ':  $sDate',
+                          style: GoogleFonts.commissioner(
+                            color: greens,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        SizedBox(width: 4),
+
+                        Text(
+                          'End date',
+                          style: GoogleFonts.commissioner(
+                            color: Colors.black,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          ':  $eDate',
+                          style: GoogleFonts.commissioner(
+                            color:greens,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+
+                      ],
+                    ),
+
                   ],
                 ),
-                 Spacer(),
-                Icon(
-                  Icons.arrow_drop_down_sharp,
-                  size: 24,
-                  color: greens,
-                ),
+                 // Spacer(),
+                // Icon(
+                //   Icons.arrow_drop_down_sharp,
+                //   size: 24,
+                //   color: greens,
+                // ),
               ],
             ),
           ),

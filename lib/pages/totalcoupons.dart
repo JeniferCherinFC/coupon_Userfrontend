@@ -3,14 +3,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:user_frontend/bottomnavigationbar/bottom_nav_bar.dart';
 import 'package:user_frontend/pages/couponsused.dart';
+import 'package:user_frontend/pages/totalusedcoupons.dart';
 
 import '../constants/colors.dart';
+import '../model/home.dart';
+import '../service/homeservice.dart';
 
 class CouponsTotal extends StatefulWidget {
   const CouponsTotal({Key? key}) : super(key: key);
@@ -21,6 +25,36 @@ class CouponsTotal extends StatefulWidget {
 
 class _CouponsTotalState extends State<CouponsTotal> {
   bool isAvailable = true;
+
+  String ? mobileNumber;
+  Coupon? totalAvailable ;
+
+
+
+  Future<void> fetchPostData() async {
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    mobileNumber = prefs.getString("mobileNumber");
+
+    final apiCall = Dashboard();
+    final  alldashboardData = await  apiCall.getDashboard(
+      mobileNumber:mobileNumber,
+      context: context,
+    );
+    setState(() {
+      totalAvailable = alldashboardData  ;
+    });
+  }
+
+
+  @override
+  void initState() {
+    fetchPostData();
+    super.initState();
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +78,7 @@ class _CouponsTotalState extends State<CouponsTotal> {
                 children: [
                   const SizedBox(height: 20),
                   Text(
-                    'Coupons',
+                    'Total Available Coupons ',
                     style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
@@ -88,7 +122,7 @@ class _CouponsTotalState extends State<CouponsTotal> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const CouponsUsed(),
+                            builder: (context) => const TotalUsed(),
                           ),
                         );
                       },
@@ -168,7 +202,7 @@ class _CouponsTotalState extends State<CouponsTotal> {
                   Padding(
                     padding: const EdgeInsets.all(25.0),
                     child: GridView.builder(
-                      itemCount: 16,
+                      itemCount: totalAvailable?.totalAvail ?? 0,
                       shrinkWrap: true,
                       gridDelegate:
                       const SliverGridDelegateWithFixedCrossAxisCount(

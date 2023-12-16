@@ -132,18 +132,18 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 const SizedBox(
                   height: 50,
                 ),
-                CustomSetting(
-                  text: 'Edit profile',
-                  icon: Icons.person_outline,
-                  onPressed: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Editprofile(),
-                      ),
-                    );
-                  },
-                ),
+                // CustomSetting(
+                //   text: 'Edit profile',
+                //   icon: Icons.person_outline,
+                //   onPressed: () async {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //         builder: (context) => const Editprofile(),
+                //       ),
+                //     );
+                //   },
+                // ),
                 CustomSetting(
                   text: 'Terms & conditions',
                   icon: Icons.description_outlined,

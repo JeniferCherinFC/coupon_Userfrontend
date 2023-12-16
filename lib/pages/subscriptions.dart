@@ -32,6 +32,7 @@ class _SubscriptionsState extends State<Subscriptions> {
       context: context, phoneNumber: mobileNumber,
     );
     setState(() {
+
       subList = allSubdata;
     });
 
@@ -112,6 +113,8 @@ class _SubscriptionsState extends State<Subscriptions> {
                           dateOfPurchase: items.dop,
                           subscriptionType: items.couponType,
                           branch: items.branch,
+                          sDate: items.sDate,
+                          eDate: items.eDate,
                         ),
                     ],
                   ),

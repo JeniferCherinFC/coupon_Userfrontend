@@ -329,455 +329,455 @@ class _HomeState extends State<Home> {
 
               ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-              InkWell(
-                onTap: () {
-                  GoRouter.of(context).goNamed(RoutePaths.subscription);
-                },
-                child: Card(
-                  elevation: 0,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: SizedBox(
-                    width: 317,
-                    height: 130,
-                    child: Stack(
-                      children: [
-                        // Background Image
-                        SvgPicture.asset(
-                          'lib/images/card1.svg',
-                          width: 350,
-                          height: 150,
-                          fit: BoxFit.cover,
-                        ),
-
-                        SizedBox(
-                          height: 130,
-                          child: Container(
-                            width: 25,
-                            height: double.infinity,
-                            decoration: const BoxDecoration(
-                              color: Color.fromRGBO(111, 207, 151, 0.67),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(7.0),
-                                bottomLeft: Radius.circular(7.0),
-                              ),
-                            ),
-                            child: RotatedBox(
-                              quarterTurns: 3,
-                              child: Center(
-                                child: Text(
-                                  'Subscriptions',
-                                  style: GoogleFonts.montserrat(
-                                    color: Colors.white,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(40.0, 20.0, 8.0, 8.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  const Text(
-                                    '*',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: Color.fromRGBO(42, 243, 126, 1),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 7,
-                                  ),
-                                  const SizedBox(
-                                    width: 100,
-                                    child: Text(
-                                      'Breakfast',
-                                      style: TextStyle(
-                                        fontSize: 9,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-
-                                  // Container with color
-                                  SizedBox(
-                                    width: 152.0,
-                                    height: 23,
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          flex: 3,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                topLeft: Radius.circular(5.0),
-                                                bottomLeft:
-                                                    Radius.circular(5.0),
-                                              ),
-                                              border: Border.all(
-                                                color: greens,
-                                                width: 2.0,
-                                              ),
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'start date',
-                                                  style: GoogleFonts.montserrat(
-                                                    color: greens,
-                                                    fontSize: 7,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 1,
-                                                ),
-                                                Text(
-                                                  '01 Dec 2023',
-                                                  style: GoogleFonts.montserrat(
-                                                    color: greens,
-                                                    fontSize: 5,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 3,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: greens,
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                topRight: Radius.circular(5.0),
-                                                bottomRight:
-                                                    Radius.circular(5.0),
-                                              ),
-                                              border: Border.all(
-                                                color: greens,
-                                                width: 2.0,
-                                              ),
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'End date',
-                                                  style: GoogleFonts.montserrat(
-                                                    color: Colors.white,
-                                                    fontSize: 7,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 1,
-                                                ),
-                                                Text(
-                                                  '30 Dec 2023',
-                                                  style: GoogleFonts.montserrat(
-                                                    color: Colors.white,
-                                                    fontSize: 5,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                children: [
-                                  const Text(
-                                    '*',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: Color.fromRGBO(42, 243, 126, 1),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 7,
-                                  ),
-                                  const SizedBox(
-                                    width: 100,
-                                    child: Text(
-                                      'Lunch',
-                                      style: TextStyle(
-                                        fontSize: 9,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-
-                                  // Container with color
-                                  SizedBox(
-                                    width: 152.0,
-                                    height: 23,
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          flex: 3,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                topLeft: Radius.circular(5.0),
-                                                bottomLeft:
-                                                    Radius.circular(5.0),
-                                              ),
-                                              border: Border.all(
-                                                color: greens,
-                                                width: 2.0,
-                                              ),
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'start date',
-                                                  style: GoogleFonts.montserrat(
-                                                    color: greens,
-                                                    fontSize: 7,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 1,
-                                                ),
-                                                Text(
-                                                  '01 Dec 2023',
-                                                  style: GoogleFonts.montserrat(
-                                                    color: greens,
-                                                    fontSize: 5,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 3,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: greens,
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                topRight: Radius.circular(5.0),
-                                                bottomRight:
-                                                    Radius.circular(5.0),
-                                              ),
-                                              border: Border.all(
-                                                color: greens,
-                                                width: 2.0,
-                                              ),
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'End date',
-                                                  style: GoogleFonts.montserrat(
-                                                    color: Colors.white,
-                                                    fontSize: 7,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 1,
-                                                ),
-                                                Text(
-                                                  '30 Dec 2023',
-                                                  style: GoogleFonts.montserrat(
-                                                    color: Colors.white,
-                                                    fontSize: 5,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                children: [
-                                  const Text(
-                                    '*',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: Color.fromRGBO(42, 243, 126, 1),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 7,
-                                  ),
-                                  const SizedBox(
-                                    width: 100,
-                                    child: Text(
-                                      'Dinner',
-                                      style: TextStyle(
-                                        fontSize: 9,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-
-                                  // Container with color
-                                  SizedBox(
-                                    width: 152.0,
-                                    height: 23,
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          flex: 3,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                topLeft: Radius.circular(5.0),
-                                                bottomLeft:
-                                                    Radius.circular(5.0),
-                                              ),
-                                              border: Border.all(
-                                                color: greens,
-                                                width: 2.0,
-                                              ),
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'start date',
-                                                  style: GoogleFonts.montserrat(
-                                                    color: greens,
-                                                    fontSize: 7,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 1,
-                                                ),
-                                                Text(
-                                                  '01 Dec 2023',
-                                                  style: GoogleFonts.montserrat(
-                                                    color: greens,
-                                                    fontSize: 5,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 3,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: greens,
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                topRight: Radius.circular(5.0),
-                                                bottomRight:
-                                                    Radius.circular(5.0),
-                                              ),
-                                              border: Border.all(
-                                                color: greens,
-                                                width: 2.0,
-                                              ),
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'End date',
-                                                  style: GoogleFonts.montserrat(
-                                                    color: Colors.white,
-                                                    fontSize: 7,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 1,
-                                                ),
-                                                Text(
-                                                  '30 Dec 2023',
-                                                  style: GoogleFonts.montserrat(
-                                                    color: Colors.white,
-                                                    fontSize: 5,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              // InkWell(
+              //   onTap: () {
+              //     GoRouter.of(context).goNamed(RoutePaths.subscription);
+              //   },
+              //   child: Card(
+              //     elevation: 0,
+              //     shape: const RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.all(Radius.circular(10)),
+              //     ),
+              //     child: SizedBox(
+              //       width: 317,
+              //       height: 130,
+              //       child: Stack(
+              //         children: [
+              //           // Background Image
+              //           SvgPicture.asset(
+              //             'lib/images/card1.svg',
+              //             width: 350,
+              //             height: 150,
+              //             fit: BoxFit.cover,
+              //           ),
+              //
+              //           SizedBox(
+              //             height: 130,
+              //             child: Container(
+              //               width: 25,
+              //               height: double.infinity,
+              //               decoration: const BoxDecoration(
+              //                 color: Color.fromRGBO(111, 207, 151, 0.67),
+              //                 borderRadius: BorderRadius.only(
+              //                   topLeft: Radius.circular(7.0),
+              //                   bottomLeft: Radius.circular(7.0),
+              //                 ),
+              //               ),
+              //               child: RotatedBox(
+              //                 quarterTurns: 3,
+              //                 child: Center(
+              //                   child: Text(
+              //                     'Subscriptions',
+              //                     style: GoogleFonts.montserrat(
+              //                       color: Colors.white,
+              //                       fontSize: 11,
+              //                       fontWeight: FontWeight.w500,
+              //                     ),
+              //                   ),
+              //                 ),
+              //               ),
+              //             ),
+              //           ),
+              //
+              //           Padding(
+              //             padding:
+              //                 const EdgeInsets.fromLTRB(40.0, 20.0, 8.0, 8.0),
+              //             child: Column(
+              //               children: [
+              //                 Row(
+              //                   children: [
+              //                     const Text(
+              //                       '*',
+              //                       style: TextStyle(
+              //                         fontSize: 12,
+              //                         fontWeight: FontWeight.w600,
+              //                         color: Color.fromRGBO(42, 243, 126, 1),
+              //                       ),
+              //                     ),
+              //                     const SizedBox(
+              //                       width: 7,
+              //                     ),
+              //                     const SizedBox(
+              //                       width: 100,
+              //                       child: Text(
+              //                         'Breakfast',
+              //                         style: TextStyle(
+              //                           fontSize: 9,
+              //                           fontWeight: FontWeight.w600,
+              //                           color: Colors.white,
+              //                         ),
+              //                       ),
+              //                     ),
+              //
+              //                     // Container with color
+              //                     SizedBox(
+              //                       width: 152.0,
+              //                       height: 23,
+              //                       child: Row(
+              //                         children: [
+              //                           Expanded(
+              //                             flex: 3,
+              //                             child: Container(
+              //                               decoration: BoxDecoration(
+              //                                 color: Colors.white,
+              //                                 borderRadius:
+              //                                     const BorderRadius.only(
+              //                                   topLeft: Radius.circular(5.0),
+              //                                   bottomLeft:
+              //                                       Radius.circular(5.0),
+              //                                 ),
+              //                                 border: Border.all(
+              //                                   color: greens,
+              //                                   width: 2.0,
+              //                                 ),
+              //                               ),
+              //                               child: Column(
+              //                                 mainAxisAlignment:
+              //                                     MainAxisAlignment.center,
+              //                                 crossAxisAlignment:
+              //                                     CrossAxisAlignment.center,
+              //                                 children: [
+              //                                   Text(
+              //                                     'start date',
+              //                                     style: GoogleFonts.montserrat(
+              //                                       color: greens,
+              //                                       fontSize: 7,
+              //                                       fontWeight: FontWeight.w600,
+              //                                     ),
+              //                                   ),
+              //                                   const SizedBox(
+              //                                     height: 1,
+              //                                   ),
+              //                                   Text(
+              //                                     '01 Dec 2023',
+              //                                     style: GoogleFonts.montserrat(
+              //                                       color: greens,
+              //                                       fontSize: 5,
+              //                                       fontWeight:
+              //                                           FontWeight.normal,
+              //                                     ),
+              //                                   ),
+              //                                 ],
+              //                               ),
+              //                             ),
+              //                           ),
+              //                           Expanded(
+              //                             flex: 3,
+              //                             child: Container(
+              //                               decoration: BoxDecoration(
+              //                                 color: greens,
+              //                                 borderRadius:
+              //                                     const BorderRadius.only(
+              //                                   topRight: Radius.circular(5.0),
+              //                                   bottomRight:
+              //                                       Radius.circular(5.0),
+              //                                 ),
+              //                                 border: Border.all(
+              //                                   color: greens,
+              //                                   width: 2.0,
+              //                                 ),
+              //                               ),
+              //                               child: Column(
+              //                                 mainAxisAlignment:
+              //                                     MainAxisAlignment.center,
+              //                                 crossAxisAlignment:
+              //                                     CrossAxisAlignment.center,
+              //                                 children: [
+              //                                   Text(
+              //                                     'End date',
+              //                                     style: GoogleFonts.montserrat(
+              //                                       color: Colors.white,
+              //                                       fontSize: 7,
+              //                                       fontWeight: FontWeight.w600,
+              //                                     ),
+              //                                   ),
+              //                                   const SizedBox(
+              //                                     height: 1,
+              //                                   ),
+              //                                   Text(
+              //                                     '30 Dec 2023',
+              //                                     style: GoogleFonts.montserrat(
+              //                                       color: Colors.white,
+              //                                       fontSize: 5,
+              //                                       fontWeight:
+              //                                           FontWeight.normal,
+              //                                     ),
+              //                                   ),
+              //                                 ],
+              //                               ),
+              //                             ),
+              //                           ),
+              //                         ],
+              //                       ),
+              //                     ),
+              //                   ],
+              //                 ),
+              //                 const SizedBox(height: 10),
+              //                 Row(
+              //                   children: [
+              //                     const Text(
+              //                       '*',
+              //                       style: TextStyle(
+              //                         fontSize: 12,
+              //                         fontWeight: FontWeight.w600,
+              //                         color: Color.fromRGBO(42, 243, 126, 1),
+              //                       ),
+              //                     ),
+              //                     const SizedBox(
+              //                       width: 7,
+              //                     ),
+              //                     const SizedBox(
+              //                       width: 100,
+              //                       child: Text(
+              //                         'Lunch',
+              //                         style: TextStyle(
+              //                           fontSize: 9,
+              //                           fontWeight: FontWeight.w600,
+              //                           color: Colors.white,
+              //                         ),
+              //                       ),
+              //                     ),
+              //
+              //                     // Container with color
+              //                     SizedBox(
+              //                       width: 152.0,
+              //                       height: 23,
+              //                       child: Row(
+              //                         children: [
+              //                           Expanded(
+              //                             flex: 3,
+              //                             child: Container(
+              //                               decoration: BoxDecoration(
+              //                                 color: Colors.white,
+              //                                 borderRadius:
+              //                                     const BorderRadius.only(
+              //                                   topLeft: Radius.circular(5.0),
+              //                                   bottomLeft:
+              //                                       Radius.circular(5.0),
+              //                                 ),
+              //                                 border: Border.all(
+              //                                   color: greens,
+              //                                   width: 2.0,
+              //                                 ),
+              //                               ),
+              //                               child: Column(
+              //                                 mainAxisAlignment:
+              //                                     MainAxisAlignment.center,
+              //                                 crossAxisAlignment:
+              //                                     CrossAxisAlignment.center,
+              //                                 children: [
+              //                                   Text(
+              //                                     'start date',
+              //                                     style: GoogleFonts.montserrat(
+              //                                       color: greens,
+              //                                       fontSize: 7,
+              //                                       fontWeight: FontWeight.w600,
+              //                                     ),
+              //                                   ),
+              //                                   const SizedBox(
+              //                                     height: 1,
+              //                                   ),
+              //                                   Text(
+              //                                     '01 Dec 2023',
+              //                                     style: GoogleFonts.montserrat(
+              //                                       color: greens,
+              //                                       fontSize: 5,
+              //                                       fontWeight:
+              //                                           FontWeight.normal,
+              //                                     ),
+              //                                   ),
+              //                                 ],
+              //                               ),
+              //                             ),
+              //                           ),
+              //                           Expanded(
+              //                             flex: 3,
+              //                             child: Container(
+              //                               decoration: BoxDecoration(
+              //                                 color: greens,
+              //                                 borderRadius:
+              //                                     const BorderRadius.only(
+              //                                   topRight: Radius.circular(5.0),
+              //                                   bottomRight:
+              //                                       Radius.circular(5.0),
+              //                                 ),
+              //                                 border: Border.all(
+              //                                   color: greens,
+              //                                   width: 2.0,
+              //                                 ),
+              //                               ),
+              //                               child: Column(
+              //                                 mainAxisAlignment:
+              //                                     MainAxisAlignment.center,
+              //                                 crossAxisAlignment:
+              //                                     CrossAxisAlignment.center,
+              //                                 children: [
+              //                                   Text(
+              //                                     'End date',
+              //                                     style: GoogleFonts.montserrat(
+              //                                       color: Colors.white,
+              //                                       fontSize: 7,
+              //                                       fontWeight: FontWeight.w600,
+              //                                     ),
+              //                                   ),
+              //                                   const SizedBox(
+              //                                     height: 1,
+              //                                   ),
+              //                                   Text(
+              //                                     '30 Dec 2023',
+              //                                     style: GoogleFonts.montserrat(
+              //                                       color: Colors.white,
+              //                                       fontSize: 5,
+              //                                       fontWeight:
+              //                                           FontWeight.normal,
+              //                                     ),
+              //                                   ),
+              //                                 ],
+              //                               ),
+              //                             ),
+              //                           ),
+              //                         ],
+              //                       ),
+              //                     ),
+              //                   ],
+              //                 ),
+              //                 const SizedBox(height: 10),
+              //                 Row(
+              //                   children: [
+              //                     const Text(
+              //                       '*',
+              //                       style: TextStyle(
+              //                         fontSize: 12,
+              //                         fontWeight: FontWeight.w600,
+              //                         color: Color.fromRGBO(42, 243, 126, 1),
+              //                       ),
+              //                     ),
+              //                     const SizedBox(
+              //                       width: 7,
+              //                     ),
+              //                     const SizedBox(
+              //                       width: 100,
+              //                       child: Text(
+              //                         'Dinner',
+              //                         style: TextStyle(
+              //                           fontSize: 9,
+              //                           fontWeight: FontWeight.w600,
+              //                           color: Colors.white,
+              //                         ),
+              //                       ),
+              //                     ),
+              //
+              //                     // Container with color
+              //                     SizedBox(
+              //                       width: 152.0,
+              //                       height: 23,
+              //                       child: Row(
+              //                         children: [
+              //                           Expanded(
+              //                             flex: 3,
+              //                             child: Container(
+              //                               decoration: BoxDecoration(
+              //                                 color: Colors.white,
+              //                                 borderRadius:
+              //                                     const BorderRadius.only(
+              //                                   topLeft: Radius.circular(5.0),
+              //                                   bottomLeft:
+              //                                       Radius.circular(5.0),
+              //                                 ),
+              //                                 border: Border.all(
+              //                                   color: greens,
+              //                                   width: 2.0,
+              //                                 ),
+              //                               ),
+              //                               child: Column(
+              //                                 mainAxisAlignment:
+              //                                     MainAxisAlignment.center,
+              //                                 crossAxisAlignment:
+              //                                     CrossAxisAlignment.center,
+              //                                 children: [
+              //                                   Text(
+              //                                     'start date',
+              //                                     style: GoogleFonts.montserrat(
+              //                                       color: greens,
+              //                                       fontSize: 7,
+              //                                       fontWeight: FontWeight.w600,
+              //                                     ),
+              //                                   ),
+              //                                   const SizedBox(
+              //                                     height: 1,
+              //                                   ),
+              //                                   Text(
+              //                                     '01 Dec 2023',
+              //                                     style: GoogleFonts.montserrat(
+              //                                       color: greens,
+              //                                       fontSize: 5,
+              //                                       fontWeight:
+              //                                           FontWeight.normal,
+              //                                     ),
+              //                                   ),
+              //                                 ],
+              //                               ),
+              //                             ),
+              //                           ),
+              //                           Expanded(
+              //                             flex: 3,
+              //                             child: Container(
+              //                               decoration: BoxDecoration(
+              //                                 color: greens,
+              //                                 borderRadius:
+              //                                     const BorderRadius.only(
+              //                                   topRight: Radius.circular(5.0),
+              //                                   bottomRight:
+              //                                       Radius.circular(5.0),
+              //                                 ),
+              //                                 border: Border.all(
+              //                                   color: greens,
+              //                                   width: 2.0,
+              //                                 ),
+              //                               ),
+              //                               child: Column(
+              //                                 mainAxisAlignment:
+              //                                     MainAxisAlignment.center,
+              //                                 crossAxisAlignment:
+              //                                     CrossAxisAlignment.center,
+              //                                 children: [
+              //                                   Text(
+              //                                     'End date',
+              //                                     style: GoogleFonts.montserrat(
+              //                                       color: Colors.white,
+              //                                       fontSize: 7,
+              //                                       fontWeight: FontWeight.w600,
+              //                                     ),
+              //                                   ),
+              //                                   const SizedBox(
+              //                                     height: 1,
+              //                                   ),
+              //                                   Text(
+              //                                     '30 Dec 2023',
+              //                                     style: GoogleFonts.montserrat(
+              //                                       color: Colors.white,
+              //                                       fontSize: 5,
+              //                                       fontWeight:
+              //                                           FontWeight.normal,
+              //                                     ),
+              //                                   ),
+              //                                 ],
+              //                               ),
+              //                             ),
+              //                           ),
+              //                         ],
+              //                       ),
+              //                     ),
+              //                   ],
+              //                 ),
+              //               ],
+              //             ),
+              //           )
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ]),
           ),
         ),

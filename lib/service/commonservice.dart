@@ -1,16 +1,19 @@
 
 import 'dart:convert';
+import 'dart:typed_data';
+// import 'dart:io' as Io;
+// import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:go_router/go_router.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user_frontend/model/common.dart';
-import '../bottomnavigationbar/bottom_nav_bar.dart';
+// import '../bottomnavigationbar/bottom_nav_bar.dart';
 import '../constants/global_variables.dart';
 import '../constants/headers.dart';
 import '../constants/utilities.dart';
-import '../pages/login.dart';
+// import '../pages/login.dart';
 import '../pages/profilesetting.dart';
 
 class Changepass{
@@ -101,7 +104,6 @@ class GetSubscription {
     );
 
     if (response.statusCode == 200) {
-      print(response.data);
       // Handle a successful response
       if (response.data['status'] == "1") {
         print('API response: ${response.data}');
@@ -177,15 +179,30 @@ class Getavailcoupons {
         var availDetails = message['data']['details'];
         var totalavail = message['data']['totalAvailable'];
 
+
+
+
         for (var itemData in availDetails) {
           String qrId = itemData['qrId'].toString();
           String QR = itemData['QR'].toString();
+
+
+   var  data = Uri.parse(QR).data;
+
+
+
+// Will returns your image as Uint8List
+          Uint8List? bytes = data?.contentAsBytes();
+
+
+          // Uint8List bytes = base64.decode(QR.split(',').last);
 
           dataList.add(
             Availablecoupons(
                 qrId:qrId,
                 QR: QR,
-              avail: totalavail,
+               bytes :bytes,
+               avail: totalavail,
 
             ),
 
@@ -201,6 +218,8 @@ class Getavailcoupons {
       // Handle errors here
       print('API request failed with status code ${response.statusCode}');
     }
+
+
     return dataList;
   }
 }
@@ -238,18 +257,25 @@ class Getusedcoupons {
         print('API response: ${response.data}');
         var message = response.data['response'];
         var availDetails = message['data']['details'];
-        var totalavail = message['data']['totalAvailable'];
+        var totalavail = message['data']['totalUsed'];
+
+
 
         for (var itemData in availDetails) {
           String qrId = itemData['qrId'].toString();
-          String QR = itemData['QR'].toString();
+          String QR =      itemData['QR'].toString();
           String claimeddate = itemData['claimeddate'].toString();
+
+       // Uint8List base64Decode(String QR) => base64.decode(itemData['QR']);
+
+
 
           dataList.add(
             Usedcoupons(
               qrId:qrId,
               QR: QR,
-              avail: totalavail, claimeddate: claimeddate,
+              avail:  totalavail,
+              claimeddate: claimeddate,
 
             ),
 

@@ -6,49 +6,61 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:user_frontend/bottomnavigationbar/bottom_nav_bar.dart';
 import 'package:user_frontend/pages/couponsavail.dart';
+import 'package:user_frontend/pages/totalcoupons.dart';
 
 import '../constants/colors.dart';
 import '../model/common.dart';
+import '../model/home.dart';
 import '../service/commonservice.dart';
+import '../service/homeservice.dart';
 
 // import 'package:intl/intl.dart';
 
-class CouponsUsed extends StatefulWidget {
-  final String ? phone;
-  final String ? type;
-  const CouponsUsed({Key? key, this.phone, this.type}) : super(key: key);
+class TotalUsed extends StatefulWidget {
+
+  const TotalUsed({Key? key}) : super(key: key);
 
   @override
-  State<CouponsUsed> createState() => _CouponsUsedState();
+  State<TotalUsed> createState() => _TotalUsedState();
 }
 
-class _CouponsUsedState extends State<CouponsUsed> {
+class _TotalUsedState extends State<TotalUsed> {
   bool isUsed = true;
-  List<Usedcoupons> subList = [];
+
+
+  String ? mobileNumber;
+  Coupon? totalAvailable ;
+
 
 
   Future<void> fetchPostData() async {
 
-    final apiCall = Getusedcoupons();
-    final  allusedData = await  apiCall.getUcoupons(
-      phoneNumber:widget.phone,
-      coupontype:widget.type,
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    mobileNumber = prefs.getString("mobileNumber");
+
+    final apiCall = Dashboard();
+    final  alldashboardData = await  apiCall.getDashboard(
+      mobileNumber:mobileNumber,
       context: context,
     );
     setState(() {
-      subList = allusedData  ;
-
+      totalAvailable = alldashboardData  ;
     });
   }
+
 
   @override
   void initState() {
     fetchPostData();
     super.initState();
   }
+
+
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -64,7 +76,7 @@ class _CouponsUsedState extends State<CouponsUsed> {
               children: [
                 const SizedBox(height: 20),
                 Text(
-                  '${widget.type} Coupons',
+                  'Total Used Coupons',
                   style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
@@ -109,7 +121,7 @@ class _CouponsUsedState extends State<CouponsUsed> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>  CouponsAvailable(phone: widget.phone, type: widget.type,),
+                          builder: (context) => CouponsTotal(),
                         ),
                       );
                     },
@@ -128,7 +140,7 @@ class _CouponsUsedState extends State<CouponsUsed> {
                   child: Padding(
                     padding: const EdgeInsets.all(25.0),
                     child: GridView.builder(
-                      itemCount: subList.length,
+                      itemCount: totalAvailable?.totalUsed ?? 0,
                       shrinkWrap: true,
                       gridDelegate:
                       const SliverGridDelegateWithFixedCrossAxisCount(
@@ -176,17 +188,10 @@ class Qrcustomwidget extends StatelessWidget {
               spreadRadius: 0.5,
             ),
           ]),
-
-
-      child: Column(
-        children: [
-          QrImageView(
-            data: 'This is a simple QR code',
-            version: QrVersions.auto,
-            gapless: false,
-          ),
-
-        ],
+      child: QrImageView(
+        data: 'This is a simple QR code',
+        version: QrVersions.auto,
+        gapless: false,
       ),
     );
   }

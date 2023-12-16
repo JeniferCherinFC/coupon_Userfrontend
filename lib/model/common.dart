@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 class Changepassword{
   String? mobileNumber;
   String? password;
@@ -46,11 +48,13 @@ class Availablecoupons{
   final String qrId;
   final  String QR;
   final  int avail;
+   Uint8List? bytes;
 
   Availablecoupons({
     required this.qrId,
     required this.QR,
     required this.avail,
+    required this.bytes,
 
 
   });
